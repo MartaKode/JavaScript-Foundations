@@ -4,9 +4,17 @@
 /* Create variables for principal, interest rate, and years. Assign them the values 200000, 0.05, and 30 respectively. Create another value called name and give it the value of your own name.
 */
 
+// console.log('this is working!');
+// function add(num1,num2){
+//     return num1+num2;
+// }
+// console.log(add(4,6));
 
+const principal = 200000;
+const interestRate = 0.05;
+const years = 30;
 
-
+const name = 'Marta';
 
 // 🏡 Task 1.5: Simple Math
 /* To create a monthly mortgage rate calculator, we need to know the number of years in months and the monthly interest rate. 
@@ -16,7 +24,8 @@ Create a variable called `monthlyInterestRate` and give it the value of interest
 Create another variable called `periods` and give it the value of years*12.
 */
 
-
+const monthlyInterestRate = interestRate/12;
+const periods = years*12;
 
 
 // 🏡 Task 2: Harder Math
@@ -30,6 +39,13 @@ When your math is correct, monthlyRate will equal 1073.64
 */
 
 
+// M=monthly payment; P = Principal amount (the total amount borrowed) I = MONTHLY Interest rate on the mortgage N = Number of periods (monthly mortgage payments) 
+// // forumula:  m = p *[ i *( 1 + i)^n] / [ ( 1 + i )^n – 1 ];
+
+
+const monthlyRate = (principal*monthlyInterestRate*Math.pow(1+monthlyInterestRate,periods))/(Math.pow(1+monthlyInterestRate,periods)-1);
+// console.log(monthlyRate);
+
 
 
 // 🏡 Task 3: Function
@@ -38,8 +54,12 @@ When your math is correct, monthlyRate will equal 1073.64
 If your name is `Oscar` mortgageCalculator() should return "Oscar, your monthly rate is 1073.64"
 */
 
-
-
+function mortgageCalculator(){ 
+    const monthlyRate = (principal*monthlyInterestRate*Math.pow(1+monthlyInterestRate,periods))/(Math.pow(1+monthlyInterestRate,periods)-1);
+    const message = name + ' your monthly rate is $' + monthlyRate;
+    return message;
+}
+// console.log(mortgageCalculator());
 
 
 // 🏡 Task 4: Arguments and Parameters
@@ -49,17 +69,45 @@ For example,
 mortgageCalculator(2000000, 0.05, 30); <-- should return 1,073.64
 */
 
+// M=monthly payment; P = Principal amount (the total amount borrowed) I = MONTHLY Interest rate on the mortgage N = Number of periods (monthly mortgage payments) 
 
+// function mortgageCalculator(principal,interestRate,years){ 
+//     const periods = years*12;
+//     const monthlyInterestRate = interestRate/12;
+//     const monthlyRate = (principal*monthlyInterestRate*Math.pow(1+monthlyInterestRate,periods))/(Math.pow(1+monthlyInterestRate,periods)-1);
+//     const message = name + ' your monthly rate is $' + monthlyRate;
+//     return message;
+// }
 
-
+function mortgageCalculator(p,i,n){ 
+    const periods = n*12;
+    const monthlyInterestRate = i/12;
+    const monthlyRate = (p*monthlyInterestRate*Math.pow(1+monthlyInterestRate,periods))/(Math.pow(1+monthlyInterestRate,periods)-1);
+    const message = name + ' your monthly rate is $' + monthlyRate;
+    return message;
+}
+// console.log(mortgageCalculator(200000, 0.05, 30));
 
 // 🏡 Task 5: Conditionals
 /* Add another paramter to your function called credit score. This parameter will be a number between 0 and 800 (a credit score).
 
 Then, add control flow within your function such that IF creditScore is above 740, interest rate drops by 0.5%, if credit score is below 660, interest rate increases by 0.5% and if credit score is anywhere between 660 and 740 interest rate doesn't change.
 */
+function mortgageCalculator(p,i,n,creditScore){ 
+    if(creditScore>740){
+        i=i-.5/100;
+    }
+else if(creditScore<660){
+    i=i+.5/100;
+}
 
-
+    const periods = n*12;
+    const monthlyInterestRate = i/12;
+    const monthlyRate = (p*monthlyInterestRate*Math.pow(1+monthlyInterestRate,periods))/(Math.pow(1+monthlyInterestRate,periods)-1);
+    const message = name + ' your monthly rate is $' + monthlyRate;
+    return message;
+}
+// console.log(mortgageCalculator(200000, 0.05, 30, 500));
 
 
 // 🏡 Task 6: Loops
@@ -78,8 +126,44 @@ For example, variableInterestRate(200000, 0.04, 30) should console.log:
 "{Name}, with an interest rate of 0.06, your monthly rate is $1199"
 */
 
+// num.toFixed(2)
 
+// function variableInterestRate(p,i,n){
+//     i=i-2.5/100;
+//       for(j=0;j<9;j++){
+      
+//           i=i+.005;
+//           iRound= i.toFixed(3);
+  
+  
+//           console.log(name+' your interest rate is $' + iRound + ',your monthly rate is'+monthlyRate );
+          
+//               }
+  
+//       const periods = n*12;
+//       const monthlyInterestRate = i/12;
+//       const monthlyRate = (p*monthlyInterestRate*Math.pow(1+monthlyInterestRate,periods))/(Math.pow(1+monthlyInterestRate,periods)-1);
+//       const message = name + ' your monthly rate is $' + monthlyRate;
+//       return message;
+//   }
+  
+//   console.log(variableInterestRate(200000, 0.04, 30))
 
+function variableInterestRate(p,i,n){
+  i=i-2.5/100;
+    for(j=0;j<9;j++){
+    
+        i=i+.005;
+        iRound= i.toFixed(3);
+        const periods = n*12;
+        const monthlyInterestRate = i/12;
+        const monthlyRate = (p*monthlyInterestRate*Math.pow(1+monthlyInterestRate,periods))/(Math.pow(1+monthlyInterestRate,periods)-1);
+        console.log(name+' your interest rate is $' + iRound + ',your monthly rate is $'+ Math.round(monthlyRate) );
+        
+            }
+}
+
+// console.log(variableInterestRate(200000, 0.04, 30))
 
 // 🌟🌟🌟 STRETCH 🌟🌟🌟//
 
